@@ -19,7 +19,7 @@ const socials: Social[] = [
     copyValue: "https://github.com/sahiti-veeravalli",
     glow: "255, 255, 255",
     icon: (
-      <svg className="w-12 h-12" viewBox="0 0 24 24" fill="#ffffff">
+      <svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
       </svg>
     ),
@@ -57,6 +57,9 @@ const SocialIcon = ({ social }: { social: Social }) => {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const hideTimeoutRef = useRef<number | null>(null);
+
+  const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const glowRgb = social.label === "GitHub" ? (prefersDark ? "255, 255, 255" : "75, 75, 75") : social.glow;
 
   const showTooltip = () => {
     if (hideTimeoutRef.current !== null) {
@@ -103,12 +106,12 @@ const SocialIcon = ({ social }: { social: Social }) => {
         style={
           hovered
             ? {
-                boxShadow: `0 0 28px -2px rgba(${social.glow}, 0.7), 0 0 12px -2px rgba(${social.glow}, 0.5)`,
-                borderColor: `rgba(${social.glow}, 0.6)`,
+                boxShadow: `0 0 28px -2px rgba(${glowRgb}, 0.7), 0 0 12px -2px rgba(${glowRgb}, 0.5)`,
+                borderColor: `rgba(${glowRgb}, 0.6)`,
               }
             : undefined
         }
-        className="w-28 h-28 rounded-full border border-border flex items-center justify-center transition-all duration-300 hover:-translate-y-1">
+        className="w-28 h-28 rounded-full border border-border flex items-center justify-center transition-all duration-300 hover:-translate-y-1 text-muted-foreground dark:text-white">
         {social.icon}
       </a>
 
@@ -122,14 +125,24 @@ const SocialIcon = ({ social }: { social: Social }) => {
             onMouseEnter={showTooltip}
             onMouseLeave={hideTooltip}
             className="absolute top-full left-1/2 -translate-x-1/2 mt-3 flex items-center gap-1.5 px-1 py-0.5 pointer-events-auto z-20 whitespace-nowrap">
-            <span
-              className="text-[11px] font-mono"
-              style={{
-                color: `rgb(${social.glow})`,
-                textShadow: `0 0 10px rgba(${social.glow}, 0.85), 0 0 18px rgba(${social.glow}, 0.45)`,
-              }}>
-              {social.username}
-            </span>
+            {social.label === "GitHub" ? (
+              <span
+                className="text-[11px] font-mono text-muted-foreground dark:text-white"
+                style={{
+                  textShadow: `0 0 10px rgba(${glowRgb}, 0.85), 0 0 18px rgba(${glowRgb}, 0.45)`,
+                }}>
+                {social.username}
+              </span>
+            ) : (
+              <span
+                className="text-[11px] font-mono"
+                style={{
+                  color: `rgb(${glowRgb})`,
+                  textShadow: `0 0 10px rgba(${glowRgb}, 0.85), 0 0 18px rgba(${glowRgb}, 0.45)`,
+                }}>
+                {social.username}
+              </span>
+            )}
             <button
               onClick={handleCopy}
               aria-label={`Copy ${social.label}`}
