@@ -13,8 +13,21 @@ import CursorGlow from "@/components/CursorGlow";
 import FloatingIcons from "@/components/FloatingIcons";
 import SectionWrapper from "@/components/SectionWrapper";
 import ScrollProgress from "@/components/ScrollProgress";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const Index = () => {
+  const sectionIds = [
+    "about",
+    "projects",
+    "skills",
+    "experience",
+    "education",
+    "certifications",
+    "coding-profiles",
+    "contact",
+  ];
+  const activeSection = useActiveSection(sectionIds);
+
   return (
     <div className="bg-background text-foreground min-h-screen relative">
       <ScrollProgress />
@@ -22,28 +35,28 @@ const Index = () => {
       <CursorGlow />
       <Navbar />
       <HeroSection />
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "about"}>
         <AboutSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "projects"}>
         <ProjectsSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "skills"}>
         <SkillsSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "experience"}>
         <ExperienceSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "education"}>
         <EducationSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "certifications"}>
         <CertificationsSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "coding-profiles"}>
         <CodingProfilesSection />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper isActive={activeSection === "contact"}>
         <ContactSection />
       </SectionWrapper>
       <Footer />
