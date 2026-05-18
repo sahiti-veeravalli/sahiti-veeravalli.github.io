@@ -40,12 +40,12 @@ const profiles = [
   },
   {
     platform: "Codeforces",
-    username: "@sahitiii",
+    username: "@23R01A0560",
     stats: "700 + Rating",
     icon: "M24 19.5V0h-6v19.5a1.5 1.5 0 001.5 1.5h3a1.5 1.5 0 001.5-1.5zM15 13.5V4H9v9.5a1.5 1.5 0 001.5 1.5h3a1.5 1.5 0 001.5-1.5zM6 19.5V9H0v10.5A1.5 1.5 0 001.5 21h3A1.5 1.5 0 006 19.5z",
     color: "hsl(210 90% 55%)",
     glowColor: "hsl(210 90% 55% / 0.2)",
-    link: "#",
+    link: "https://codeforces.com/profile/23r01a0560",
   },
 ];
 

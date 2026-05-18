@@ -190,7 +190,7 @@ const ContactSection = () => {
         </motion.p>
 
         <motion.div
-          className="flex items-center justify-center gap-8 pb-20"
+          className="flex items-center justify-center gap-14 md:gap-20 pb-20"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7 }}>
