@@ -118,13 +118,13 @@ const SocialIcon = ({ social }: { social: Social }) => {
       <AnimatePresence>
         {hovered && (
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, x: "-50%", y: 6 }}
+            animate={{ opacity: 1, x: "-50%", y: 0 }}
+            exit={{ opacity: 0, x: "-50%", y: 6 }}
             transition={{ duration: 0.18 }}
             onMouseEnter={showTooltip}
             onMouseLeave={hideTooltip}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 flex items-center gap-1.5 px-1 py-0.5 pointer-events-auto z-20 whitespace-nowrap">
+            className="absolute top-full left-1/2 mt-3 flex items-center gap-1.5 px-1 py-0.5 pointer-events-auto z-20 whitespace-nowrap">
             {social.label === "GitHub" ? (
               <span
                 className="text-[11px] font-mono text-muted-foreground dark:text-white"
