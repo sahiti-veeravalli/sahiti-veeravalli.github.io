@@ -122,12 +122,12 @@ const SocialIcon = ({ social }: { social: Social }) => {
             onMouseEnter={showTooltip}
             onMouseLeave={hideTooltip}
             className="absolute top-full left-1/2 -translate-x-1/2 mt-3 flex items-center gap-1.5 px-1 py-0.5 pointer-events-auto z-20 whitespace-nowrap">
-              <span
-                className="text-[11px] font-mono"
-                style={{
-                  color: `rgb(${social.glow})`,
-                  textShadow: `0 0 10px rgba(${social.glow}, 0.85), 0 0 18px rgba(${social.glow}, 0.45)`,
-                }}>
+            <span
+              className="text-[11px] font-mono"
+              style={{
+                color: `rgb(${social.glow})`,
+                textShadow: `0 0 10px rgba(${social.glow}, 0.85), 0 0 18px rgba(${social.glow}, 0.45)`,
+              }}>
               {social.username}
             </span>
             <button
